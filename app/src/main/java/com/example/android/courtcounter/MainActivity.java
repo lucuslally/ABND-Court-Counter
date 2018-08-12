@@ -6,9 +6,14 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    /*
+     Global variables for tracking goals and fouls
+     */
+    int goalScoreTeamA = 0;
+    int foulScoreTeamA = 0;
 
-    int scoreTeamA = 0;
-    int scoreTeamB = 0;
+    int goalScoreTeamB = 0;
+    int foulScoreTeamB = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,53 +23,66 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Displays the given score for Team A.
+     * Displays the given goal score for Team A.
      */
-    public void displayForTeamA(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_a_score);
+    public void displayGoalsForTeamA(int score) {
+        TextView scoreView = (TextView) findViewById(R.id.team_a_goal_score);
+        scoreView.setText(String.valueOf(score));
+    }
+    /*
+     * Displays the given goal score for Team B
+     */
+
+    public void displayGoalsForTeamB(int score) {
+        TextView scoreView = (TextView) findViewById(R.id.team_b_goal_score);
+        scoreView.setText(String.valueOf(score));
+    }
+    /*
+     * Displays the given foul score for Team A
+     */
+    public void displayFoulsForTeamA(int score) {
+        TextView scoreView = (TextView) findViewById(R.id.team_a_foul_score);
+        scoreView.setText(String.valueOf(score));
+    }
+    /*
+     * Displays the given foul score for Team B
+     */
+
+    public void displayFoulsForTeamB(int score) {
+        TextView scoreView = (TextView) findViewById(R.id.team_b_foul_score);
         scoreView.setText(String.valueOf(score));
     }
 
-    public void displayForTeamB(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_b_score);
-        scoreView.setText(String.valueOf(score));
+    public void resetScoreBoard(View view) {
+        goalScoreTeamA = 0;
+        foulScoreTeamA = 0;
+        goalScoreTeamB = 0;
+        foulScoreTeamB = 0;
+
+        displayGoalsForTeamA(goalScoreTeamA);
+        displayFoulsForTeamA(foulScoreTeamA);
+        displayGoalsForTeamB(goalScoreTeamB);
+        displayFoulsForTeamB(foulScoreTeamB);
     }
 
-    public void resetTeamScores(View view) {
-        scoreTeamA = 0;
-        displayForTeamA(0);
-        scoreTeamB = 0;
-        displayForTeamB(0);
+    public void addGoalTeamA(View view) {
+        goalScoreTeamA = goalScoreTeamA + 1;
+        displayGoalsForTeamA(goalScoreTeamA);
     }
 
-    public void addThreeForTeamA(View view) {
-        scoreTeamA = scoreTeamA + 3;
-        displayForTeamA(scoreTeamA);
+    public void addFoulTeamA(View view) {
+        foulScoreTeamA = foulScoreTeamA + 1;
+        displayFoulsForTeamA(foulScoreTeamA);
     }
 
-    public void addTwoForTeamA(View view) {
-        scoreTeamA = scoreTeamA + 2;
-        displayForTeamA(scoreTeamA);
+    public void addGoalTeamB(View view) {
+        goalScoreTeamB = goalScoreTeamB + 1;
+        displayGoalsForTeamB(goalScoreTeamB);
     }
 
-    public void addOneForTeamA(View view) {
-        scoreTeamA = scoreTeamA + 1;
-        displayForTeamA(scoreTeamA);
-    }
-
-    public void addThreeForTeamB(View view) {
-        scoreTeamB = scoreTeamB + 3;
-        displayForTeamB(scoreTeamB);
-    }
-
-    public void addTwoForTeamB(View view) {
-        scoreTeamB = scoreTeamB + 2;
-        displayForTeamB(scoreTeamB);
-    }
-
-    public void addOneForTeamB(View view) {
-        scoreTeamB = scoreTeamB + 1;
-        displayForTeamB(scoreTeamB);
+    public void addFoulTeamB(View view) {
+        foulScoreTeamB = foulScoreTeamB + 1;
+        displayFoulsForTeamB(foulScoreTeamB);
     }
 }
 
